@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <h1>Sustainable Development Goal 10: Reduced Inequalities</h1>
+  <p>True progress is measured by the inclusion of all, not the advancement of a few.</p>
+</header>
+
+<nav>
+  <a href="Home.html">Home</a>
+  <a href="Info.html">Info</a>
+  <a href="Table.html">Table</a>
+  <a href="contact.html">Contact</a>
+  <a href="About.html">About</a>
+</nav>
+
+<main>
+  <section class="card" aria-labelledby="contact-heading">
+    <form id="contact-form" action="#" method="post" novalidate>
+      <h2 id="contact-heading" class="sr-only">Feedback form</h2>
+
+      <div id="form-success" class="success" role="status" aria-live="polite">
+        Thank you. Your message has been recorded.
+      </div>
+
+      <div class="row cols-2">
+        <div>
+          <label for="name">Full name <span aria-hidden="true">*</span></label>
+          <input id="name" name="name" type="text" placeholder="Jane Doe" required autocomplete="name" />
+          <div class="invalid-msg" id="name-help">Please enter your name.</div>
+        </div>
+
+        <div>
+          <label for="email">Email <span aria-hidden="true">*</span></label>
+          <input id="email" name="email" type="email" placeholder="you@example.com" required autocomplete="email" />
+          <div class="invalid-msg" id="email-help">Enter a valid email address.</div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div>
+          <label for="subject">Subject <span aria-hidden="true">*</span></label>
+          <select id="subject" name="subject" required>
+            <option value="" disabled selected>Select one</option>
+            <option value="general">General question</option>
+            <option value="feedback">Website feedback</option>
+            <option value="partnership">Partnership / Collaboration</option>
+            <option value="press">Press / Media</option>
+          </select>
+          <div class="invalid-msg">Please choose a subject.</div>
+        </div>
+      </div>
+
+      <fieldset>
+        <legend>Your feedback type</legend>
+        <div class="options inline" role="radiogroup" aria-labelledby="feedback-type-label">
+          <label class="choice"><input type="radio" name="fb_type" value="comment" required><span>Comment</span></label>
+          <label class="choice"><input type="radio" name="fb_type" value="question"><span>Question</span></label>
+          <label class="choice"><input type="radio" name="fb_type" value="bug"><span>Bug report</span></label>
+        </div>
+        <p class="help" id="feedback-type-label">Pick the option that best fits.</p>
+        <div class="invalid-msg">Select one option.</div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Topics you care about</legend>
+        <div class="options">
+          <label class="choice"><input type="checkbox" name="topics" value="income-inequality"><span>Income inequality</span></label>
+          <label class="choice"><input type="checkbox" name="topics" value="discrimination"><span>Discrimination</span></label>
+          <label class="choice"><input type="checkbox" name="topics" value="policy"><span>Policy and advocacy</span></label>
+          <label class="choice"><input type="checkbox" name="topics" value="education"><span>Inclusive education</span></label>
+          <label class="choice"><input type="checkbox" name="topics" value="access"><span>Access to services</span></label>
+        </div>
+        <p class="help">Choose all that apply. Optional.</p>
+      </fieldset>
+
+      <div class="row">
+        <div>
+          <label for="message">Message <span aria-hidden="true">*</span></label>
+          <textarea id="message" name="message" placeholder="Write your message here..." maxlength="1200" required aria-describedby="msg-help"></textarea>
+          <div class="help" id="msg-help"><span id="char-left">1200</span> characters left.</div>
+          <div class="invalid-msg">Please add a short message.</div>
+        </div>
+      </div>
+
+      <div class="row cols-2">
+        <div>
+          <label for="country">Country/Region</label>
+          <input id="country" name="country" type="text" placeholder="Sri Lanka" autocomplete="country-name" />
+        </div>
+        <div>
+          <label for="org">Organization (optional)</label>
+          <input id="org" name="org" type="text" placeholder="University / NGO / Company" />
+        </div>
+      </div>
+
+      <div class="row">
+        <label class="choice">
+          <input id="consent" name="consent" type="checkbox" required />
+          <span>I consent to you storing my details for the purpose of this inquiry.</span>
+        </label>
+        <div class="invalid-msg">You need to accept to continue.</div>
+      </div>
+
+      <div class="actions">
+        <p class="note">Fields marked with * are required.</p>
+        <button type="submit" id="submitBtn">Send message</button>
+      </div>
+
+      <input type="text" name="website" id="website" class="sr-only" tabindex="-1" autocomplete="off" aria-hidden="true" />
+    </form>
+  </section>
+
+  <footer>
+  <p>&copy; SDG 10 by Sanithu | Email: sanithu.20250212@iit.ac.lk </p>
+</footer>
+</main>
+
+<script>
+  const textarea = document.getElementById('message');
+  const charLeft = document.getElementById('char-left');
+  textarea.addEventListener('input', () => {
+    const left = textarea.maxLength - textarea.value.length;
+    charLeft.textContent = left;
+  });
+
+  const form = document.getElementById('contact-form');
+  const success = document.getElementById('form-success');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (document.getElementById('website').value) return;
+
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    success.classList.add('show');
+    form.reset();
+    charLeft.textContent = textarea.maxLength;
+  });
+</script>
+
+</body>
+</html>
